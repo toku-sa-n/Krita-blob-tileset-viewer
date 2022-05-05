@@ -3,5 +3,6 @@ Type=Service
 ServiceTypes=Krita/PythonPlugin
 X-KDE-Library=blobtilesetviewer
 X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
 Name=Blob tileset viewer
 Comment=Convert your 1x5 tileset to the blob tileset and view it.
