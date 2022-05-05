@@ -59,7 +59,8 @@ class BlobTilesetViewer(DockWidget):
         if Krita.instance().activeDocument() is None:
             return
 
-        Krita.instance().activeDocument().exportImage(self.fp.name, InfoObject())
+        Krita.instance().activeDocument().exportImage(
+            self.fp.name, InfoObject())
         result = subprocess.run(['blob-tileset-generator', '-o',
                                  self.fp.name, self.fp.name])
         if result.returncode != 0:
