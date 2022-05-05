@@ -46,7 +46,8 @@ class BlobTilesetViewer(DockWidget):
         self.update_thumbnail()
 
     def open_button_clicked(self):
-        pass
+        doc = Krita.instance().openDocument(self.fp.name)
+        Krita.instance().activeWindow().addView(doc)
 
     def update_button_clicked(self):
         self.update_thumbnail()
