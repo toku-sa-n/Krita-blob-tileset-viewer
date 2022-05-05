@@ -2,6 +2,10 @@
 
 Blob Tileset Viewer provides a way to check your 1x5 tileset is correctly arranged by converting it to a blob tileset and showing it in a docker.
 
+## Screenshot
+
+![Screenshot](screenshot.png)
+
 ## Requirements
 
 You need to be able to run [`blob-tileset-generator`](https://github.com/toku-sa-n/blob-tileset-generator) on your terminal.
