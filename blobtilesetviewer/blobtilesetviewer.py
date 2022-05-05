@@ -44,6 +44,8 @@ class BlobTilesetViewer(DockWidget):
         self.fp.close()
 
     def canvasChanged(self, canvas):
+        del canvas
+
         self.update_thumbnail()
 
     def open_button_clicked(self):
