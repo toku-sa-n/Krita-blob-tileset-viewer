@@ -62,7 +62,7 @@ class BlobTilesetViewer(DockWidget):
         Krita.instance().activeDocument().exportImage(
             self.fp.name, InfoObject())
         result = subprocess.run(['blob-tileset-generator', '-o',
-                                 self.fp.name, self.fp.name])
+                                 self.fp.name, self.fp.name], check=False)
         if result.returncode != 0:
             self.image_label.clear()
             self.message_label.setText(
