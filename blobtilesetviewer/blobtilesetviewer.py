@@ -34,8 +34,8 @@ class BlobTilesetViewer(DockWidget):
 
         self.setWidget(self.widget)
 
-        # Krita asks how to save a PNG file even if we specify the settings
-        # with `InfoObject`.
+        # Krita opens a dialog to ask us how to save a PNG file
+        # even if we specify the settings with `InfoObject`.
         # This is why we save the image as BMP.
         self.fp = tempfile.NamedTemporaryFile(suffix='.bmp')
 
