@@ -1,7 +1,8 @@
 import tempfile
 import subprocess
 from krita import (DockWidget, Krita,
-                   DockWidgetFactory, DockWidgetFactoryBase, QImage, QPixmap, QSize, InfoObject)
+                   DockWidgetFactory, DockWidgetFactoryBase, QImage, QPixmap,
+                   QSize, InfoObject)
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QPushButton, QWidget)
 
