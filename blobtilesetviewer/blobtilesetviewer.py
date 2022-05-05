@@ -20,10 +20,14 @@ class BlobTilesetViewer(DockWidget):
         self.open_button = QPushButton("Open")
         self.open_button.clicked.connect(self.open_button_clicked)
 
+        self.update_button = QPushButton("Update")
+        self.update_button.clicked.connect(self.update_button_clicked)
+
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.image_label)
         self.layout.addWidget(self.message_label)
         self.layout.addWidget(self.open_button)
+        self.layout.addWidget(self.update_button)
 
         self.widget = QWidget()
         self.widget.setLayout(self.layout)
@@ -39,10 +43,19 @@ class BlobTilesetViewer(DockWidget):
         self.fp.close()
 
     def canvasChanged(self, canvas):
-        if canvas is None or canvas.view() is None:
+        self.update_thumbnail()
+
+    def open_button_clicked(self):
+        pass
+
+    def update_button_clicked(self):
+        self.update_thumbnail()
+
+    def update_thumbnail(self):
+        if Krita.instance().activeDocument() is None:
             return
 
-        canvas.view().document().exportImage(self.fp.name, InfoObject())
+        Krita.instance().activeDocument().exportImage(self.fp.name, InfoObject())
         result = subprocess.run(['blob-tileset-generator', '-o',
                                  self.fp.name, self.fp.name])
         if result.returncode != 0:
@@ -55,9 +68,6 @@ class BlobTilesetViewer(DockWidget):
             thumbnail = thumbnail.scaled(
                 QSize(200, 150), Qt.KeepAspectRatio, Qt.SmoothTransformation)
             self.image_label.setPixmap(QPixmap.fromImage(thumbnail))
-
-    def open_button_clicked(self):
-        pass
 
 
 Krita.instance().addDockWidgetFactory(DockWidgetFactory(
