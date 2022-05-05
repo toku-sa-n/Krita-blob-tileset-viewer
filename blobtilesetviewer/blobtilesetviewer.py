@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QPushButton, QWidget)
 class BlobTilesetViewer(DockWidget):
     def __init__(self):
         super().__init__()
-        self.i = 0
 
         self.setWindowTitle("Blob tileswet viewer")
 
@@ -31,6 +30,9 @@ class BlobTilesetViewer(DockWidget):
 
         self.setWidget(self.widget)
 
+        # Krita asks how to save a PNG file even if we specify the settings
+        # with `InfoObject`.
+        # This is why we save the image as BMP.
         self.fp = tempfile.NamedTemporaryFile(suffix='.bmp')
 
     def __del__(self):
@@ -40,9 +42,6 @@ class BlobTilesetViewer(DockWidget):
         if canvas is None or canvas.view() is None:
             return
 
-        # Krita asks how to save a PNG file even if we specify the settings
-        # with `InfoObject`.
-        # This is why we save the image as BMP.
         canvas.view().document().exportImage(self.fp.name, InfoObject())
         result = subprocess.run(['blob-tileset-generator', '-o',
                                  self.fp.name, self.fp.name])
@@ -56,8 +55,6 @@ class BlobTilesetViewer(DockWidget):
             thumbnail = thumbnail.scaled(
                 QSize(200, 150), Qt.KeepAspectRatio, Qt.SmoothTransformation)
             self.image_label.setPixmap(QPixmap.fromImage(thumbnail))
-            self.message_label.setText(str(self.i))
-            self.i += 1
 
     def open_button_clicked(self):
         pass
