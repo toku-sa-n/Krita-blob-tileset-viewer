@@ -37,8 +37,10 @@ class BlobTilesetViewer(DockWidget):
 
         # Krita opens a dialog to ask us how to save a PNG file
         # even if we specify the settings with `InfoObject`.
-        # This is why we save the image as BMP.
-        self.fp = tempfile.NamedTemporaryFile(suffix='.bmp')
+        # This is why we save the image as TGA.
+        # See https://github.com/toku-sa-n/Krita-blob-tileset-viewer/issues/1
+        # for  why we choose TGA.
+        self.fp = tempfile.NamedTemporaryFile(suffix='.tga')
 
     def __del__(self):
         self.fp.close()
