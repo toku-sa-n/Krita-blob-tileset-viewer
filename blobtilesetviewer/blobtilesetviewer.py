@@ -39,7 +39,7 @@ class BlobTilesetViewer(DockWidget):
         # even if we specify the settings with `InfoObject`.
         # This is why we save the image as TGA.
         # See https://github.com/toku-sa-n/Krita-blob-tileset-viewer/issues/1
-        # for  why we choose TGA.
+        # for why we choose TGA.
         self.fp = tempfile.NamedTemporaryFile(suffix='.tga')
 
     def __del__(self):
